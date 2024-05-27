@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="wclassth=device-wclassth, initial-scale=1.0"
+    />
+    <title>Document</title>
+    <style>
+	    body
+	    {
+		    background-color:black;
+	    }
+      .fb {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .btn {
+        height: 3rem;
+        width: 20rem;
+        margin: 1rem;
+      background-color:grey;
+	      color:white;
+	      
+      }
+      .btn:hover {
+        cursor: grab;
+      }
+    </style>
+    <script>
+      function f1() {
+        const txt= ` 
+        def area_of_triangle(base, height):
+    return 0.5 * base * height
+def area_of_rectangle(length, width):
+    return length * width
+def area_of_circle(radius):
+    return math.pi * radius ** 2
+
+base = float(input("Enter the base of the triangle: "))
+height = float(input("Enter the height of the triangle: "))
+length = float(input("Enter the length of the rectangle: "))
+width = float(input("Enter the width of the rectangle: "))
+radius = float(input("Enter the radius of the circle: "))
+print("Area of the triangle:", area_of_triangle(base, height))
+print("Area of the rectangle:", area_of_rectangle(length, width))
+print("Area of the circle:", area_of_circle(radius))
+    
+ `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
+
+      }
+
+      function f2() {
+        const txt= `  
+        def union_of_lists(list1, list2):
+    return list(set(list1) | set(list2))
+
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+print("Union of lists:", union_of_lists(list1, list2))
+
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+      function f3() {
+        const txt= `
+        def intersection_of_lists(list1, list2):
+    return list(set(list1) & set(list2))
+
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+print("Intersection of lists:", intersection_of_lists(list1, list2))
+
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+      function f4() {
+        const txt= ` 
+        def remove_ith_occurrence(word_list, word, i):
+    count = 0
+    for idx in range(len(word_list)):
+        if word_list[idx] == word:
+            count += 1
+            if count == i:
+                del word_list[idx]
+                break
+    return word_list
+
+word_list = ['apple', 'banana', 'apple', 'cherry', 'apple']
+word = 'apple'
+i = 2
+print("List after removing", i, "th occurrence of", word, ":", remove_ith_occurrence(word_list, word, i))
+
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+      function f5() {
+        const txt= ` def count_word_occurrences(sentence):
+    words = sentence.split()
+    word_count = {}
+    for word in words:
+        if word in word_count:
+            word_count[word] += 1
+        else:
+            word_count[word] = 1
+    return word_count
+
+sentence = "this is a test this is only a test"
+print("Word occurrences:", count_word_occurrences(sentence))
+
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+      function f6() {
+        const txt= `
+        def is_substring_present(main_string, substring):
+    return substring in main_string
+
+main_string = "hello world"
+substring = "world"
+print("Is substring present:", is_substring_present(main_string, substring))
+
+  `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+      function f7() {
+        const txt= ` 
+        def map_lists_to_dict(list1, list2):
+    return dict(zip(list1, list2))
+
+keys = ['name', 'age', 'city']
+values = ['Alice', 25, 'New York']
+print("Mapped dictionary:", map_lists_to_dict(keys, values))
+
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+      function f8() {
+        const txt= `  
+        def word_frequency(sentence):
+    words = sentence.split()
+    frequency = {}
+    for word in words:
+        frequency[word] = frequency.get(word, 0) + 1
+    return frequency
+
+sentence = "this is a test this is only a test"
+print("Word frequency:", word_frequency(sentence))
+
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+      function f9() {
+        const txt= ` 
+        def words_by_first_char(word_list):
+    result = {}
+    for word in word_list:
+        first_char = word[0]
+        if first_char not in result:
+            result[first_char] = []
+        result[first_char].append(word)
+    return result
+
+word_list = ['apple', 'banana', 'cherry', 'avocado', 'blueberry']
+print("Dictionary of words by first character:", words_by_first_char(word_list))
+
+`;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+      function f10() {
+        const txt= ` 
+def recursive_length(lst):
+    if not lst:
+        return 0
+    return 1 + recursive_length(lst[1:])
+
+lst = [1, 2, 3, 4, 5]
+print("Length of the list:", recursive_length(lst))
+
+`;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+function f11() {
+        const txt= ` 
+import math
+
+class Sphere:
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def diameter(self):
+        return 2 * self.radius
+    
+    def circumference(self):
+        return 2 * math.pi * self.radius
+    
+    def volume(self):
+        return (4/3) * math.pi * self.radius ** 3
+
+radius = float(input("Enter the radius of the sphere: "))
+sphere = Sphere(radius)
+print("Diameter:", sphere.diameter())
+print("Circumference:", sphere.circumference())
+print("Volume:", sphere.volume())
+
+
+`;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+function f12() {
+        const txt= ` 
+def capitalize_words_in_file(filename):
+    with open(filename, 'r') as file:
+        content = file.read()
+    capitalized_content = content.title()
+    with open(filename, 'w') as file:
+        file.write(capitalized_content)
+
+filename = 'example.txt'
+capitalize_words_in_file(filename)
+print("File content capitalized")
+
+`;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+function f13() {
+        const txt= ` 
+
+       import sqlite3
+
+def connect_db():
+    return sqlite3.connect('example.db')
+
+def create_table(conn):
+    with conn:
+        conn.execute('''CREATE TABLE IF NOT EXISTS students
+                        (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)''')
+
+def add_student(conn, name, age):
+    with conn:
+        conn.execute('INSERT INTO students (name, age) VALUES (?, ?)', (name, age))
+
+def delete_student(conn, student_id):
+    with conn:
+        conn.execute('DELETE FROM students WHERE id=?', (student_id,))
+
+def update_student(conn, student_id, name, age):
+    with conn:
+        conn.execute('UPDATE students SET name=?, age=? WHERE id=?', (name, age, student_id))
+
+def retrieve_students(conn):
+    with conn:
+        cursor = conn.execute('SELECT * FROM students')
+        for row in cursor:
+            print(row)
+
+conn = connect_db()
+create_table(conn)
+add_student(conn, 'Alice', 25)
+add_student(conn, 'Bob', 22)
+retrieve_students(conn)
+update_student(conn, 1, 'Alice', 26)
+delete_student(conn, 2)
+retrieve_students(conn)
+conn.close()
+
+`;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+      }
+
+    </script>
+  </head>
+  <body>
+    <div class="fb">
+      <button class="btn" onclick="f1()">area of tri,cir,rect</button>
+      <button class="btn" onclick="f2()">union of two list</button>
+      <button class="btn" onclick="f3()">intersection of list</button>
+      <button class="btn" onclick="f4()">remove 'i' th occurence</button>
+      <button class="btn" onclick="f5()">count occurence of each</button>
+      <button class="btn" onclick="f6()">check sub string present</button>
+      <button class="btn" onclick="f7()">map list in dict</button>
+      <button class="btn" onclick="f8()">frequncy of words appearing</button>
+      <button class="btn" onclick="f9()">first char as key and val as string</button>
+      <button class="btn" onclick="f10()">len of string using recuresion</button>
+      <button class="btn" onclick="f11()">Diameter, Circumference, and Volume of a Sphere Using Class</button>
+      <button class="btn" onclick="f12()">read file and capitalize</button>
+      <button class="btn" onclick="f13()">connect database</button>
+      
+    </div>
+  </body>
+</html>
