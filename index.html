@@ -307,6 +307,994 @@ conn.close()
 
       }
 
+function fc1() {
+const txt= `
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, bt[20], wt[20], tat[20], i, j;
+    float avwt = 0, avtat = 0;
+
+    printf("Enter total number of processes (maximum 20): ");
+    scanf("%d", &n);
+
+    printf("\\nEnter Process Burst Time\\n");
+    for (i = 0; i < n; i++) {
+        printf("P[%d]: ", i + 1);
+        scanf("%d", &bt[i]);
+    }
+
+    wt[0] = 0; // waiting time for first process is 0
+    // calculating waiting time
+    for (i = 1; i < n; i++) {
+        wt[i] = 0;
+        for (j = 0; j < i; j++)
+            wt[i] += bt[j];
+    }
+
+    printf("\\nProcess\\t\\tBurst Time\\tWaiting Time\\tTurnaround Time");
+    // calculating turnaround time
+    for (i = 0; i < n; i++) {
+        tat[i] = bt[i] + wt[i];
+        avwt += wt[i];
+        avtat += tat[i];
+        printf("\\nP[%d]\\t\\t%d\\t\\t%d\\t\\t%d", i + 1, bt[i], wt[i], tat[i]);
+    }
+    avwt /= i;
+    avtat /= i;
+    printf("\\n\\nAverage Waiting Time: %.2f", avwt);
+    printf("\\nAverage Turnaround Time: %.2f", avtat);
+
+    getch();
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc2() {
+const txt= ` 
+#include<stdio.h>
+
+int main() {
+    int n, i, j, bt[20], wt[20], tat[20], p[20], total = 0, pos, temp;
+    float avg_wt, avg_tat;
+
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+
+    printf("\\nEnter Burst Time for each process:\\n");
+    for (i = 0; i < n; i++) {
+        printf("P[%d]: ", i + 1);
+        scanf("%d", &bt[i]);
+        p[i] = i + 1;
+    }
+
+    // Sorting burst time in ascending order using selection sort
+    for (i = 0; i < n; i++) {
+        pos = i;
+        for (j = i + 1; j < n; j++) {
+            if (bt[j] < bt[pos])
+                pos = j;
+        }
+        temp = bt[i];
+        bt[i] = bt[pos];
+        bt[pos] = temp;
+        temp = p[i];
+        p[i] = p[pos];
+        p[pos] = temp;
+    }
+
+    wt[0] = 0;
+    // Calculating waiting time
+    for (i = 1; i < n; i++) {
+        wt[i] = 0;
+        for (j = 0; j < i; j++)
+            wt[i] += bt[j];
+        total += wt[i];
+    }
+
+    avg_wt = (float)total / n;
+    total = 0;
+
+    printf("\\nProcess\\t\\tBurst Time\\tWaiting Time\\tTurnaround Time\\n");
+    for (i = 0; i < n; i++) {
+        tat[i] = bt[i] + wt[i];
+        total += tat[i];
+        printf("P[%d]\\t\\t%d\\t\\t%d\\t\\t%d\\n", p[i], bt[i], wt[i], tat[i]);
+    }
+
+    avg_tat = (float)total / n;
+    printf("\\nAverage Waiting Time = %.2f\\n", avg_wt);
+    printf("Average Turnaround Time = %.2f\\n", avg_tat);
+
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc3() {
+const txt= `
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int bt[20], p[20], wt[20], tat[20], i, j, n, total = 0, pos, temp;
+    float avg_wt, avg_tat;
+
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+
+    printf("\nEnter Burst Time:\n");
+    for (i = 0; i < n; i++) {
+        printf("P%d: ", i + 1);
+        scanf("%d", &bt[i]);
+        p[i] = i + 1; //contains process number
+    }
+
+    // sorting burst time in ascending order using selection sort
+    for (i = 0; i < n; i++) {
+        pos = i;
+        for (j = i + 1; j < n; j++) {
+            if (bt[j] < bt[pos])
+                pos = j;
+        }
+        temp = bt[i];
+        bt[i] = bt[pos];
+        bt[pos] = temp;
+        temp = p[i];
+        p[i] = p[pos];
+        p[pos] = temp;
+    }
+
+    wt[0] = 0; //waiting time for first process will be zero
+    // calculate waiting time
+    for (i = 1; i < n; i++) {
+        wt[i] = 0;
+        for (j = 0; j < i; j++)
+            wt[i] += bt[j];
+        total += wt[i];
+    }
+    avg_wt = (float)total / n; //average waiting time
+    total = 0;
+
+    printf("\nProcess\t Burst Time \tWaiting Time \tTurnaround Time");
+    for (i = 0; i < n; i++) {
+        tat[i] = bt[i] + wt[i]; //calculate turnaround time
+        total += tat[i];
+        printf("\nP%d\t\t %d\t\t %d\t\t\t%d", p[i], bt[i], wt[i], tat[i]);
+    }
+    avg_tat = (float)total / n; //average turnaround time
+
+    printf("\n\nAverage Waiting Time= %.2f", avg_wt);
+    printf("\nAverage Turnaround Time= %.2f\n", avg_tat);
+    getch();
+    return 0;
+}
+
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc4() {
+const txt= ` 
+#include <stdio.h>
+
+void main() {
+    int buffer[10], bufsize = 10, in = 0, out = 0, produce, consume, choice = 0;
+
+    while (choice != 3) {
+        printf("\n1. Produce \t 2. Consume \t 3. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: {
+                if ((in + 1) % bufsize == out)
+                    printf("\nBuffer is Full");
+                else {
+                    printf("\nEnter the value: ");
+                    scanf("%d", &produce);
+                    buffer[in] = produce;
+                    in = (in + 1) % bufsize;
+                }
+                break;
+            }
+            case 2: {
+                if (in == out)
+                    printf("\nBuffer is Empty");
+                else {
+                    consume = buffer[out];
+                    printf("\nThe consumed value is %d", consume);
+                    out = (out + 1) % bufsize;
+                }
+                break;
+            }
+            case 3: {
+                printf("\nExiting...");
+                break;
+            }
+            default: {
+                printf("\nInvalid choice! Please enter again.");
+                break;
+            }
+        }
+    }
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc5() {
+const txt= `
+#include <stdio.h>
+#include <semaphore.h>
+#include <pthread.h>
+#include <unistd.h>
+
+sem_t stick[5];
+
+void* philosopher(void* j) {
+    int i = (int) j;
+    printf("Philosopher %d is Hungry\n", i);
+    sem_wait(&stick[(i + 1) % 5]);
+    sem_wait(&stick[i]);
+    printf("Philosopher %d is eating\n", i);
+    sleep(1);
+    sem_post(&stick[(i + 1) % 5]);
+    sem_post(&stick[i]);
+    printf("Philosopher %d is thinking\n", i);
+    return NULL;
+}
+
+int main() {
+    int i;
+    pthread_t pid[5];
+    for (i = 0; i < 5; i++) {
+        sem_init(&stick[i], 0, 1);
+    }
+    for (i = 0; i < 5; i++) {
+        pthread_create(&pid[i], NULL, philosopher, (void*) i);
+    }
+    for (i = 0; i < 5; i++) {
+        pthread_join(pid[i], NULL);
+    }
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc6() {
+const txt= ` 
+#include <stdio.h>
+#include <conio.h>
+
+int max[100][100];
+int alloc[100][100];
+int need[100][100];
+int avail[100];
+int n, r;
+
+void input();
+void show();
+void cal();
+
+int main() {
+    printf("********** Banker's Algo ************\n");
+    input();
+    show();
+    cal();
+    getch();
+    return 0;
+}
+
+void input() {
+    int i, j;
+    printf("Enter the no of Processes: ");
+    scanf("%d", &n);
+    printf("Enter the no of resources instances: ");
+    scanf("%d", &r);
+    printf("Enter the Max Matrix:\n");
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < r; j++) {
+            scanf("%d", &max[i][j]);
+        }
+    }
+    printf("Enter the Allocation Matrix:\n");
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < r; j++) {
+            scanf("%d", &alloc[i][j]);
+        }
+    }
+    printf("Enter the available Resources:\n");
+    for (j = 0; j < r; j++) {
+        scanf("%d", &avail[j]);
+    }
+}
+
+void show() {
+    int i, j;
+    printf("Process\t Allocation\t Max\t Available\t\n");
+    for (i = 0; i < n; i++) {
+        printf("P%d\t ", i + 1);
+        for (j = 0; j < r; j++) {
+            printf("%d ", alloc[i][j]);
+        }
+        printf("\t");
+        for (j = 0; j < r; j++) {
+            printf("%d ", max[i][j]);
+        }
+        printf("\t");
+        if (i == n - 1) {
+            for (j = 0; j < r; j++)
+                printf("%d ", avail[j]);
+        }
+        printf("\n");
+    }
+}
+
+void cal() {
+    int finish[100], flag = 1, k, c1 = 0;
+    int safe[100];
+    int i, j;
+    for (i = 0; i < n; i++) {
+        finish[i] = 0;
+    }
+    //find need matrix
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < r; j++) {
+            need[i][j] = max[i][j] - alloc[i][j];
+        }
+    }
+    printf("\n");
+    while (flag) {
+        flag = 0;
+        for (i = 0; i < n; i++) {
+            int c = 0;
+            for (j = 0; j < r; j++) {
+                if ((finish[i] == 0) && (need[i][j] <= avail[j])) {
+                    c++;
+                    if (c == r) {
+                        for (k = 0; k < r; k++) {
+                            avail[k] += alloc[i][j];
+                        }
+                        finish[i] = 1;
+                        flag = 1;
+                        printf("P%d->", i);
+                        if (finish[i] == 1) {
+                            i = n;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (i = 0; i < n; i++) {
+        if (finish[i] == 1) {
+            c1++;
+        } else {
+            printf("P%d->", i);
+        }
+    }
+    if (c1 == n) {
+        printf("\nThe system is in safe state\n");
+    } else {
+        printf("\nProcess are in deadlock\n");
+        printf("System is in unsafe state\n");
+    }
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc7() {
+const txt= ` 
+#include <stdio.h>
+
+int main() {
+    int i, j, n, a[50], frame[10], no, k, avail, count = 0;
+
+    printf("\n---------------------------------------");
+    printf("\n FIFO PAGE REPLACEMENT ALGORITHM ");
+    printf("\n---------------------------------------");
+
+    printf("\n Enter the length of reference string: ");
+    scanf("%d", &n);
+
+    printf("\n Enter the reference string: ");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    printf("\n Enter no. of frames: ");
+    scanf("%d", &no);
+
+    for (i = 0; i < no; i++) {
+        frame[i] = -1;
+    }
+
+    j = 0;
+
+    printf("\nRef. string\t Page Frames\n");
+    printf("--------------------------------\n");
+
+    for (i = 0; i < n; i++) {
+        printf("%d\t\t", a[i]);
+        avail = 0;
+        for (k = 0; k < no; k++) {
+            if (frame[k] == a[i]) {
+                avail = 1;
+                break;
+            }
+        }
+
+        if (avail == 0) {
+            frame[j] = a[i];
+            j = (j + 1) % no;
+            count++;
+            for (k = 0; k < no; k++) {
+                printf("%d\t", frame[k]);
+            }
+        }
+        printf("\n");
+    }
+
+    printf("\nPage Faults: %d\n", count);
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc8() {
+const txt= ` 
+#include <stdio.h>
+
+int main() {
+    int i, j, k, min, ref_string[25], frame[10], count[10], n, num_frames, page_faults = 0, next = 1;
+
+    printf("\n---------------------------------------");
+    printf("\n LRU PAGE REPLACEMENT ALGORITHM ");
+    printf("\n---------------------------------------");
+
+    printf("\nLRU Page Replacement Algorithm\n");
+    printf("Enter the length of reference string: ");
+    scanf("%d", &n);
+
+    printf("Enter the reference string: ");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &ref_string[i]);
+    }
+
+    printf("Enter the number of frames: ");
+    scanf("%d", &num_frames);
+
+    for (i = 0; i < num_frames; i++) {
+        count[i] = 0;
+        frame[i] = -1;
+    }
+
+    printf("\nThe Page Replacement process is: \n");
+    printf("\nRef. string\t Page Frames\t\t Page Faults No.\n");
+    printf("-----------------------------------------------------\n");
+
+    for (i = 0; i < n; i++) {
+        printf("%5d\t", ref_string[i]);
+
+        for (j = 0; j < num_frames; j++) {
+            if (frame[j] == ref_string[i]) {
+                count[j] = next;
+                next++;
+            }
+        }
+
+        if (next == 1 || (i >= num_frames && frame[num_frames - 1] != ref_string[i])) {
+            min = 0;
+            for (j = 1; j < num_frames; j++) {
+                if (count[min] > count[j]) {
+                    min = j;
+                }
+            }
+            frame[min] = ref_string[i];
+            count[min] = next;
+            next++;
+            page_faults++;
+        }
+
+        printf("\t");
+        for (j = 0; j < num_frames; j++) {
+            printf("%4d", frame[j]);
+        }
+
+        if (next != 1 && (i >= num_frames && frame[num_frames - 1] != ref_string[i])) {
+            printf("%15s", "");
+            printf("\t\tPF No. -- %d", page_faults);
+        }
+
+        printf("\n");
+    }
+
+    printf("\nThe number of page faults using LRU are: %d\n", page_faults);
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc9() {
+const txt= ` 
+#include <stdio.h>
+
+#define MAX_BLOCKS 25
+
+int main() {
+    int frag[MAX_BLOCKS], b[MAX_BLOCKS], f[MAX_BLOCKS], bf[MAX_BLOCKS] = {0}, ff[MAX_BLOCKS];
+    int i, j, nb, nf, temp;
+
+    printf("\nMemory Management Scheme - First Fit");
+    printf("\nEnter the number of blocks: ");
+    scanf("%d", &nb);
+    printf("Enter the number of files: ");
+    scanf("%d", &nf);
+
+    printf("\nEnter the size of the blocks:\n");
+    for (i = 0; i < nb; i++) {
+        printf("Block %d: ", i + 1);
+        scanf("%d", &b[i]);
+    }
+
+    printf("Enter the size of the files:\n");
+    for (i = 0; i < nf; i++) {
+        printf("File %d: ", i + 1);
+        scanf("%d", &f[i]);
+    }
+
+    for (i = 0; i < nf; i++) {
+        for (j = 0; j < nb; j++) {
+            if (bf[j] != 1) {
+                temp = b[j] - f[i];
+                if (temp >= 0) {
+                    ff[i] = j;
+                    break;
+                }
+            }
+        }
+        frag[i] = temp;
+        bf[ff[i]] = 1;
+    }
+
+    printf("\nFile_no:\tFile_size:\tBlock_no:\tBlock_size:\tFragment");
+    for (i = 0; i < nf; i++)
+        printf("\n%d\t\t%d\t\t%d\t\t%d\t\t%d", i + 1, f[i], ff[i] + 1, b[ff[i]], frag[i]);
+
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc10() {
+const txt= ` 
+#include <stdio.h>
+
+#define MAX_BLOCKS 25
+
+int main() {
+    int frag[MAX_BLOCKS], b[MAX_BLOCKS], f[MAX_BLOCKS], bf[MAX_BLOCKS] = {0}, ff[MAX_BLOCKS];
+    int i, j, nb, nf, temp, lowest = 10000;
+
+    printf("\n-----------------------------------------");
+    printf("\nMemory Management Scheme - Best Fit");
+    printf("\n-----------------------------------------");
+
+    printf("\nEnter the number of blocks: ");
+    scanf("%d", &nb);
+    printf("Enter the number of files: ");
+    scanf("%d", &nf);
+
+    printf("\nEnter the size of the blocks:\n");
+    for (i = 0; i < nb; i++) {
+        printf("Block %d: ", i + 1);
+        scanf("%d", &b[i]);
+    }
+
+    printf("Enter the size of the files:\n");
+    for (i = 0; i < nf; i++) {
+        printf("File %d: ", i + 1);
+        scanf("%d", &f[i]);
+    }
+
+    for (i = 0; i < nf; i++) {
+        for (j = 0; j < nb; j++) {
+            if (bf[j] != 1) {
+                temp = b[j] - f[i];
+                if (temp >= 0) {
+                    if (lowest > temp) {
+                        ff[i] = j;
+                        lowest = temp;
+                    }
+                }
+            }
+        }
+        frag[i] = lowest;
+        bf[ff[i]] = 1;
+        lowest = 10000;
+    }
+
+    printf("\nFile_no:\tFile_size:\tBlock_no:\tBlock_size:\tFragment");
+    for (i = 0; i < nf && ff[i] != 0; i++)
+        printf("\n%d\t\t%d\t\t%d\t\t%d\t\t%d", i + 1, f[i], ff[i] + 1, b[ff[i]], frag[i]);
+
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc11() {
+const txt= ` 
+#include <stdio.h>
+
+#define MAX_BLOCKS 25
+
+int main() {
+    int frag[MAX_BLOCKS], b[MAX_BLOCKS], f[MAX_BLOCKS], bf[MAX_BLOCKS] = {0}, ff[MAX_BLOCKS];
+    int i, j, nb, nf, temp, highest = 0;
+
+    printf("\n-----------------------------------------");
+    printf("\nMemory Management Scheme - Worst Fit");
+    printf("\n-----------------------------------------");
+
+    printf("\nEnter the number of blocks: ");
+    scanf("%d", &nb);
+    printf("Enter the number of files: ");
+    scanf("%d", &nf);
+
+    printf("\nEnter the size of the blocks:\n");
+    for (i = 0; i < nb; i++) {
+        printf("Block %d: ", i + 1);
+        scanf("%d", &b[i]);
+    }
+
+    printf("Enter the size of the files:\n");
+    for (i = 0; i < nf; i++) {
+        printf("File %d: ", i + 1);
+        scanf("%d", &f[i]);
+    }
+
+    for (i = 0; i < nf; i++) {
+        for (j = 0; j < nb; j++) {
+            if (bf[j] != 1) {
+                temp = b[j] - f[i];
+                if (temp >= 0) {
+                    if (highest < temp) {
+                        ff[i] = j;
+                        highest = temp;
+                    }
+                }
+            }
+        }
+        frag[i] = highest;
+        bf[ff[i]] = 1;
+        highest = 0;
+    }
+
+    printf("\nFile_no:\tFile_size:\tBlock_no:\tBlock_size:\tFragment");
+    for (i = 0; i < nf && ff[i] != 0; i++)
+        printf("\n%d\t\t%d\t\t%d\t\t%d\t\t%d", i + 1, f[i], ff[i] + 1, b[ff[i]], frag[i]);
+
+    return 0;
+}
+`,
+        `#include<stdio.h>
+
+int main() {
+    int t[20], n, i, tohm[20], tot = 0;
+    float avhm;
+
+    printf("Enter the number of tracks: ");
+    scanf("%d", &n);
+
+    printf("Enter the tracks to be traversed: ");
+    for(i = 0; i < n; i++)
+        scanf("%d", &t[i]);
+
+    for(i = 0; i < n - 1; i++) {
+        tohm[i] = t[i + 1] - t[i];
+        if(tohm[i] < 0)
+            tohm[i] = tohm[i] * (-1);
+    }
+
+    for(i = 0; i < n - 1; i++)
+        tot += tohm[i];
+
+    avhm = (float)tot / n;
+
+    printf("\nTracks traversed\tDifference between tracks\n");
+    for(i = 0; i < n - 1; i++)
+        printf("%d\t\t\t%d\n", t[i], tohm[i]);
+
+    printf("\nAverage header movements: %f\n", avhm);
+
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc12() {
+const txt= ` 
+#include<stdio.h>
+
+int main() {
+    int t[20], d[20], h, i, j, n, temp, k, atr[20], tot, p, sum = 0;
+
+    printf("Enter the number of tracks to be traversed: ");
+    scanf("%d", &n);
+
+    printf("Enter the position of head: ");
+    scanf("%d", &h);
+
+    t[0] = 0;
+    t[1] = h;
+
+    printf("Enter the tracks: ");
+    for(i = 2; i < n + 2; i++)
+        scanf("%d", &t[i]);
+
+    for(i = 0; i < n + 2; i++) {
+        for(j = 0; j < (n + 2) - i - 1; j++) {
+            if(t[j] > t[j + 1]) {
+                temp = t[j];
+                t[j] = t[j + 1];
+                t[j + 1] = temp;
+            }
+        }
+    }
+
+    for(i = 0; i < n + 2; i++) {
+        if(t[i] == h)
+            j = i;
+        k = i;
+    }
+
+    p = 0;
+    while(t[j] != 0) {
+        atr[p] = t[j];
+        j--;
+        p++;
+    }
+    atr[p] = t[j];
+    for(p = k + 1; p < n + 2; p++, k++)
+        atr[p] = t[k + 1];
+
+    for(j = 0; j < n + 1; j++) {
+        if(atr[j] > atr[j + 1])
+            d[j] = atr[j] - atr[j + 1];
+        else
+            d[j] = atr[j + 1] - atr[j];
+        sum += d[j];
+    }
+
+    printf("\nAverage header movements: %f\n", (float)sum / n);
+
+    return 0;
+}
+`,
+    `#include <stdio.h>
+#include <conio.h>
+
+int main() {
+    int t[20], d[20], h, i, j, n, temp, k, atr[20], tot, p, sum = 0;
+
+    clrscr();
+    
+    printf("Enter the no of tracks to be traversed: ");
+    scanf("%d", &n);
+    
+    printf("Enter the position of head: ");
+    scanf("%d", &h);
+
+    t[0] = 0;
+    t[1] = h;
+
+    printf("Enter total tracks: ");
+    scanf("%d", &tot);
+    t[2] = tot - 1;
+
+    printf("Enter the tracks: ");
+    for (i = 3; i <= n + 2; i++)
+        scanf("%d", &t[i]);
+
+    // Sort the tracks array here using a sorting algorithm
+
+    // Calculate the total header movements and average
+    for (i = 0; i <= n + 2; i++) {
+        // Implement the sorting algorithm here
+    }
+
+    printf("Total header movements: %d\n", sum);
+    printf("Average is %f\n", (float)sum / n);
+
+    getch();
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc13() {
+const txt= ` 
+#include <stdio.h>
+#include <conio.h>
+
+int main() {
+    int t[20], d[20], h, i, j, n, temp, k, atr[20], tot, p, sum = 0;
+
+    clrscr();
+    
+    printf("Enter the no of tracks to be traversed: ");
+    scanf("%d", &n);
+    
+    printf("Enter the position of head: ");
+    scanf("%d", &h);
+
+    t[0] = 0;
+    t[1] = h;
+
+    printf("Enter total tracks: ");
+    scanf("%d", &tot);
+    t[2] = tot - 1;
+
+    printf("Enter the tracks: ");
+    for (i = 3; i <= n + 2; i++)
+        scanf("%d", &t[i]);
+
+    // Sort the tracks array here using a sorting algorithm
+
+    // Calculate the total header movements and average
+    for (i = 0; i <= n + 2; i++) {
+        // Implement the sorting algorithm here
+    }
+
+    printf("Total header movements: %d\n", sum);
+    printf("Average is %f\n", (float)sum / n);
+
+    getch();
+    return 0;
+}
+`,
+        `#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+struct fileTable {
+    char name[20];
+    int sb, nob;
+} ft[30];
+
+int main() {
+    int i, n;
+    char s[20];
+
+    clrscr();
+    
+    printf("Enter number of files: ");
+    scanf("%d", &n);
+
+    // Read file information
+    for(i = 0; i < n; i++) {
+        printf("\nEnter file name %d: ", i + 1);
+        scanf("%s", ft[i].name);
+        printf("Enter starting block of file %d: ", i + 1);
+        scanf("%d", &ft[i].sb);
+        printf("Enter number of blocks in file %d: ", i + 1);
+        scanf("%d", &ft[i].nob);
+    }
+
+    printf("\nEnter the file name to be searched: ");
+    scanf("%s", s);
+
+    // Search for the file in the file table
+    for(i = 0; i < n; i++) {
+        if(strcmp(s, ft[i].name) == 0) {
+            printf("File found!\n");
+            printf("Name: %s\n", ft[i].name);
+            printf("Starting Block: %d\n", ft[i].sb);
+            printf("Number of Blocks: %d\n", ft[i].nob);
+            break;
+        }
+    }
+
+    if(i == n) {
+        printf("File not found!\n");
+    }
+
+    getch();
+    return 0;
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+
+function fc14() {
+const txt= `
+#include<stdio.h>
+#include<conio.h>
+
+void main() {
+    int n, bt[20], wt[20], tat[20], i;
+    float wtavg = 0, tatavg = 0;
+
+    clrscr();
+
+    printf("Enter the number of processes: ");
+    scanf("%d", &n);
+
+    printf("Enter the burst time for each process:\n");
+    for(i = 0; i < n; i++) {
+        printf("P[%d]: ", i + 1);
+        scanf("%d", &bt[i]);
+    }
+
+    // Calculate waiting time and turnaround time
+    wt[0] = 0;
+    tat[0] = bt[0];
+    for(i = 1; i < n; i++) {
+        wt[i] = wt[i - 1] + bt[i - 1];
+        tat[i] = wt[i] + bt[i];
+        wtavg += wt[i];
+        tatavg += tat[i];
+    }
+
+    wtavg /= n;
+    tatavg /= n;
+
+    // Print the results
+    printf("\nPROCESS\tBURST TIME\tWAITING TIME\tTURNAROUND TIME\n");
+    for(i = 0; i < n; i++) {
+        printf("P[%d]\t%d\t\t%d\t\t%d\n", i + 1, bt[i], wt[i], tat[i]);
+    }
+    printf("\nAverage Waiting Time: %.2f\n", wtavg);
+    printf("Average Turnaround Time: %.2f\n", tatavg);
+
+    getch();
+}
+`;
+	navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'black';;
+
+}
+	    
     </script>
   </head>
   <body>
@@ -324,6 +1312,23 @@ conn.close()
       <button class="btn" onclick="f11()">Diameter, Circumference, and Volume of a Sphere Using Class</button>
       <button class="btn" onclick="f12()">read file and capitalize</button>
       <button class="btn" onclick="f13()">connect database</button>
+
+	<button onclick="fc1()">FCFS</button>
+<button onclick="fc2()">SJF</button>
+<button onclick="fc3()">Producer Consumer</button>
+<button onclick="fc4()">Dinning Philosopher</button>
+<button onclick="fc5()">Bankers</button>
+<button onclick="fc6()">FIFO</button>
+<button onclick="fc7()">LRU</button>
+<button onclick="fc8()">First Fit</button>
+<button onclick="fc9()">Best Fit</button>
+<button onclick="fc10()">Worst Fit</button>
+<button onclick="fc11()">FCFS Disk</button>
+<button onclick="fc12()">SCAN</button>
+<button onclick="fc13()">CSCAN</button>
+<button onclick="fc14()">Sequential
+File Allocation</button>
+<button onclick="copyCode()">Linked File Allocation</button>
       
     </div>
   </body>
